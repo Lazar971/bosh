@@ -12,18 +12,14 @@ import com.duke.maki.bosh.controller.Controller;
  * @author Lazar Milosavljević
  */
 public class Main {
-    
+
     public static void main(String[] args) {
-        
-        String input=args[0];
-        String output=args[1];
-        if(!input.endsWith("/")|| !output.endsWith("/")){
-            return;
-        }
-        System.out.println(input);
-        System.out.println(output);
-        Controller controller=new Controller(input, output);
+
+        String input = "C:\\Users/Lazar Milosavljević/Desktop/practical task/input/";
+        String output = "C:\\Users/Lazar Milosavljević/Desktop/practical task/output/";
+
+       
+        Controller controller = new Controller(input, output);
     }
-    
-   
+
 }

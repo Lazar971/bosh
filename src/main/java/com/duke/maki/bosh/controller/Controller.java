@@ -5,6 +5,15 @@
  */
 package com.duke.maki.bosh.controller;
 
+import com.duke.maki.bosh.constants.Constants;
+import com.duke.maki.bosh.form.WindowApp;
+import com.duke.maki.bosh.service.ConvertService;
+import com.duke.maki.bosh.service.factory.ConvertServiceFactory;
+import com.duke.maki.bosh.controller.util.LoadFiles;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Lazar Milosavljević
@@ -13,10 +22,12 @@ public class Controller {
     
     private String inputDir;
     private String outputDir;
-
+    private final WindowApp app;
     public Controller(String inputDir, String outputDir) {
         this.inputDir = inputDir;
         this.outputDir = outputDir;
+        app=new WindowApp(this);
+        app.setVisible(true);
     }
 
     public String getInputDir() {
@@ -34,7 +45,37 @@ public class Controller {
     public void setOutputDir(String outputDir) {
         this.outputDir = outputDir;
     }
-    
+
+    public List<String> getInputFiles() {
+        LoadFiles lf=new LoadFiles(inputDir);
+        return lf.execute();
+        
+    }
+
+    public String getExtention(String item) {
+        String[] exploded=item.split("\\.");
+        
+        String ext=exploded[exploded.length-1];
+        if(ext.equals(Constants.XML_EXTENSION)){
+            return Constants.CSV_EXTENSION;
+        }else{
+            return Constants.XML_EXTENSION;
+        }
+        
+    }
+
+    public void convert(String inputName,String outpuName, String format) {
+        
+        
+        ConvertService service=ConvertServiceFactory.create(format);
+        try {
+            service.convert(inputDir+inputName, outputDir+outpuName);
+        } catch (Exception ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+   
     
     
 }
