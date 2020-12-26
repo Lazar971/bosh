@@ -5,8 +5,13 @@
  */
 package com.duke.maki.bosh.service;
 
+import com.duke.maki.bosh.constants.MapKeyNames;
+import com.duke.maki.bosh.domain.Category;
+import com.duke.maki.bosh.domain.Product;
 import com.duke.maki.bosh.service.load.LoadService;
 import com.duke.maki.bosh.service.save.SaveService;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,8 +19,8 @@ import com.duke.maki.bosh.service.save.SaveService;
  */
 public class ConvertService {
     
-    private LoadService loadService;
-    private SaveService saveService;
+    private final LoadService loadService;
+    private final SaveService saveService;
 
     public ConvertService(LoadService loadService, SaveService saveService) {
         this.loadService = loadService;
@@ -25,12 +30,23 @@ public class ConvertService {
     
     
     public void convert(String inputLocation,String outputLocation) throws Exception{
-        loadService.load(inputLocation);
+        Map<String,Object> map= loadService.load(inputLocation);
+        List<Product> products=(List<Product>)map.get(MapKeyNames.PRODUCTS);
+        
+        List<Category> categories=(List<Category>)map.get(MapKeyNames.CATEGORIES);
+        
         validate();
-        saveService.save();
+        saveService.save(map,outputLocation);
     }
 
     private void validate() {
 
+    }
+    
+    
+    private<T> void printArray(List<T> arr ){
+        arr.forEach((object) -> {
+            System.out.println(object);
+        });
     }
 }

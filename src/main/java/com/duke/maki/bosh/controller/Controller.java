@@ -5,7 +5,6 @@
  */
 package com.duke.maki.bosh.controller;
 
-import com.duke.maki.bosh.constants.Constants;
 import com.duke.maki.bosh.form.WindowApp;
 import com.duke.maki.bosh.service.ConvertService;
 import com.duke.maki.bosh.service.factory.ConvertServiceFactory;
@@ -13,6 +12,8 @@ import com.duke.maki.bosh.controller.util.LoadFiles;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.duke.maki.bosh.constants.Extensions;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,10 +57,10 @@ public class Controller {
         String[] exploded=item.split("\\.");
         
         String ext=exploded[exploded.length-1];
-        if(ext.equals(Constants.XML_EXTENSION)){
-            return Constants.CSV_EXTENSION;
+        if(ext.equals(Extensions.XML_EXTENSION)){
+            return Extensions.CSV_EXTENSION;
         }else{
-            return Constants.XML_EXTENSION;
+            return Extensions.XML_EXTENSION;
         }
         
     }
@@ -70,8 +71,9 @@ public class Controller {
         ConvertService service=ConvertServiceFactory.create(format);
         try {
             service.convert(inputDir+inputName, outputDir+outpuName);
+            JOptionPane.showMessageDialog(this.app, "Success");
         } catch (Exception ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(app, "Failure");
         }
     }
 

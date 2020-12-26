@@ -5,11 +5,13 @@
  */
 package com.duke.maki.bosh.service.load;
 
+import java.util.Map;
+
 /**
  *
  * @author Lazar Milosavljević
  */
 public interface LoadService {
     
-    public void load(String source) throws Exception;
+    public Map<String,Object> load(String source) throws Exception;
 }

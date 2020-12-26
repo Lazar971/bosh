@@ -5,6 +5,7 @@
  */
 package com.duke.maki.bosh.domain;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class Category {
     
     private String id;
     private String name;
-    private List<String> products;
+    private List<String> products=new LinkedList<>();
 
     public Category(String id, String name, List<String> products) {
         this.id = id;
@@ -25,6 +26,7 @@ public class Category {
     }
 
     public Category() {
+        
     }
 
     public String getId() {
@@ -71,6 +73,11 @@ public class Category {
         }
         final Category other = (Category) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" + "id=" + id + ", name=" + name + ", productsSize=" + products.size() + '}';
     }
     
     

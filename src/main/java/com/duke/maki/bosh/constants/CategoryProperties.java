@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.duke.maki.bosh.service.save;
-
-import java.util.Map;
+package com.duke.maki.bosh.constants;
 
 /**
  *
  * @author Lazar Milosavljević
  */
-public interface SaveService {
+public interface CategoryProperties {
     
-    public void save(Map<String, Object> input, String targetLocation) throws Exception;
+    static final String CATEGORY_ID="id";
+    static final String CATEGORY_NAME="name";
+    static final String CATEGORY_PRODUCTS="products";
 }

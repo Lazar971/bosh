@@ -9,7 +9,7 @@ package com.duke.maki.bosh.constants;
  *
  * @author Lazar Milosavljević
  */
-public interface Constants {
+public interface Extensions {
 
     static final String XML_EXTENSION = "xml";
     static final String CSV_EXTENSION = "csv";
