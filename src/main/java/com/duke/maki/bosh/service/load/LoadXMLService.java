@@ -31,12 +31,15 @@ import org.w3c.dom.NodeList;
 public class LoadXMLService implements LoadService {
 
     private DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-
+   
+    
+    
     @Override
-    public Map<String,Object> load(String source) throws Exception {
+    public Map<String,Object> load(InputStream stream) throws Exception {
         Map<String,Object> resultMap=new HashMap<>();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
-        Document document = builder.parse(new BufferedInputStream(new FileInputStream(source)));
+        
+        Document document = builder.parse(stream);
         Element root = document.getDocumentElement();
         Node productTag = root.getElementsByTagName("items").item(0);
        

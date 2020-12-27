@@ -15,9 +15,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String input = "C:\\Users/Lazar Milosavljević/Desktop/practical task/input/";
-        String output = "C:\\Users/Lazar Milosavljević/Desktop/practical task/output/";
-
+        if(args.length<2){
+            System.out.println("Not enough args");
+            return;
+        }
+        String input=args[0];
+        String output=args[1];
        
         Controller controller = new Controller(input, output);
     }

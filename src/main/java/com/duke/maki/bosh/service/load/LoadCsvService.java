@@ -8,9 +8,13 @@ package com.duke.maki.bosh.service.load;
 import com.duke.maki.bosh.constants.MapKeyNames;
 import com.duke.maki.bosh.domain.Category;
 import com.duke.maki.bosh.domain.Product;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,12 +26,14 @@ import java.util.Map;
  */
 public class LoadCsvService implements LoadService {
 
+  
+    
+    
     @Override
-    public Map<String, Object> load(String source) throws Exception {
+    public Map<String, Object> load(InputStream stream) throws Exception {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put(MapKeyNames.CATEGORIES, new LinkedList<>());
-
-        BufferedReader reader = new BufferedReader(new FileReader(source));
+        BufferedReader reader=new BufferedReader(new InputStreamReader(stream));
         String line = reader.readLine();
         while (line != null && !line.startsWith("INSERT_UPDATE")) {
             line = reader.readLine();

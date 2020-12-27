@@ -22,6 +22,7 @@ public class SaveXMLService implements SaveService {
 
     @Override
     public void save(Map<String, Object> input, String targetLocation) throws Exception {
+        
         PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(targetLocation + ".xml")));
         List<Product> products = (List<Product>) input.get(MapKeyNames.PRODUCTS);
         List<Category> categories = (List<Category>) input.get(MapKeyNames.CATEGORIES);
@@ -31,6 +32,7 @@ public class SaveXMLService implements SaveService {
         writer.println("<root>");
         writer.println("\t<items>");
         for (Product product : products) {
+           
              String [] productPropertiesValues=new String[]{product.getId(),product.getName(),product.getDescription()};
             writer.println("\t\t<item>");
             for (int i=0;i<productProperties.length;i++) {

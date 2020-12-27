@@ -5,6 +5,7 @@
  */
 package com.duke.maki.bosh.service.load;
 
+import java.io.InputStream;
 import java.util.Map;
 
 /**
@@ -13,5 +14,5 @@ import java.util.Map;
  */
 public interface LoadService {
     
-    public Map<String,Object> load(String source) throws Exception;
+    public Map<String,Object> load(InputStream stream) throws Exception;
 }
